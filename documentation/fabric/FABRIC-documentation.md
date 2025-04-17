@@ -17,6 +17,8 @@
 
 | POD | Type | Node | Management IP | Platform | Provisioned in CloudVision | Serial Number |
 | --- | ---- | ---- | ------------- | -------- | -------------------------- | ------------- |
+| FABRIC | l3leaf | borderleaf1 | 172.20.20.91/24 | cEOS-lab | Provisioned | - |
+| FABRIC | l3leaf | borderleaf2 | 172.20.20.92/24 | cEOS-lab | Provisioned | - |
 | FABRIC | l3leaf | leaf1 | 172.20.20.11/24 | cEOS-lab | Provisioned | - |
 | FABRIC | l3leaf | leaf2 | 172.20.20.12/24 | cEOS-lab | Provisioned | - |
 | FABRIC | l3leaf | leaf3 | 172.20.20.13/24 | cEOS-lab | Provisioned | - |
@@ -80,6 +82,14 @@
 
 | Type | Node | Node Interface | Peer Type | Peer Node | Peer Interface |
 | ---- | ---- | -------------- | --------- | ----------| -------------- |
+| l3leaf | borderleaf1 | Ethernet1 | mlag_peer | borderleaf2 | Ethernet1 |
+| l3leaf | borderleaf1 | Ethernet2 | mlag_peer | borderleaf2 | Ethernet2 |
+| l3leaf | borderleaf1 | Ethernet3 | spine | spine1 | Ethernet52 |
+| l3leaf | borderleaf1 | Ethernet4 | spine | spine2 | Ethernet52 |
+| l3leaf | borderleaf1 | Ethernet5 | spine | spine3 | Ethernet52 |
+| l3leaf | borderleaf2 | Ethernet3 | spine | spine1 | Ethernet53 |
+| l3leaf | borderleaf2 | Ethernet4 | spine | spine2 | Ethernet53 |
+| l3leaf | borderleaf2 | Ethernet5 | spine | spine3 | Ethernet53 |
 | l3leaf | leaf1 | Ethernet1 | mlag_peer | leaf2 | Ethernet1 |
 | l3leaf | leaf1 | Ethernet2 | mlag_peer | leaf2 | Ethernet2 |
 | l3leaf | leaf1 | Ethernet3 | spine | spine1 | Ethernet2 |
@@ -279,12 +289,18 @@
 
 | Uplink IPv4 Pool | Available Addresses | Assigned addresses | Assigned Address % |
 | ---------------- | ------------------- | ------------------ | ------------------ |
-| 10.255.0.0/22 | 1024 | 288 | 28.13 % |
+| 10.255.0.0/22 | 1024 | 300 | 29.3 % |
 
 ### Point-To-Point Links Node Allocation
 
 | Node | Node Interface | Node IP Address | Peer Node | Peer Interface | Peer IP Address |
 | ---- | -------------- | --------------- | --------- | -------------- | --------------- |
+| borderleaf1 | Ethernet3 | 10.255.1.105/31 | spine1 | Ethernet52 | 10.255.1.104/31 |
+| borderleaf1 | Ethernet4 | 10.255.1.107/31 | spine2 | Ethernet52 | 10.255.1.106/31 |
+| borderleaf1 | Ethernet5 | 10.255.1.109/31 | spine3 | Ethernet52 | 10.255.1.108/31 |
+| borderleaf2 | Ethernet3 | 10.255.1.111/31 | spine1 | Ethernet53 | 10.255.1.110/31 |
+| borderleaf2 | Ethernet4 | 10.255.1.113/31 | spine2 | Ethernet53 | 10.255.1.112/31 |
+| borderleaf2 | Ethernet5 | 10.255.1.115/31 | spine3 | Ethernet53 | 10.255.1.114/31 |
 | leaf1 | Ethernet3 | 10.255.0.61/31 | spine1 | Ethernet2 | 10.255.0.60/31 |
 | leaf1 | Ethernet4 | 10.255.0.63/31 | spine2 | Ethernet2 | 10.255.0.62/31 |
 | leaf1 | Ethernet5 | 10.255.0.65/31 | spine3 | Ethernet2 | 10.255.0.64/31 |
@@ -434,12 +450,14 @@
 
 | Loopback Pool | Available Addresses | Assigned addresses | Assigned Address % |
 | ------------- | ------------------- | ------------------ | ------------------ |
-| 10.255.4.0/24 | 256 | 51 | 19.93 % |
+| 10.255.4.0/24 | 256 | 53 | 20.71 % |
 
 ### Loopback0 Interfaces Node Allocation
 
 | POD | Node | Loopback0 |
 | --- | ---- | --------- |
+| FABRIC | borderleaf1 | 10.255.4.61/32 |
+| FABRIC | borderleaf2 | 10.255.4.62/32 |
 | FABRIC | leaf1 | 10.255.4.11/32 |
 | FABRIC | leaf2 | 10.255.4.12/32 |
 | FABRIC | leaf3 | 10.255.4.13/32 |
@@ -496,12 +514,14 @@
 
 | VTEP Loopback Pool | Available Addresses | Assigned addresses | Assigned Address % |
 | ------------------ | ------------------- | ------------------ | ------------------ |
-| 10.255.5.0/24 | 256 | 48 | 18.75 % |
+| 10.255.5.0/24 | 256 | 50 | 19.54 % |
 
 ### VTEP Loopback Node allocation
 
 | POD | Node | Loopback1 |
 | --- | ---- | --------- |
+| FABRIC | borderleaf1 | 10.255.5.61/32 |
+| FABRIC | borderleaf2 | 10.255.5.61/32 |
 | FABRIC | leaf1 | 10.255.5.11/32 |
 | FABRIC | leaf2 | 10.255.5.11/32 |
 | FABRIC | leaf3 | 10.255.5.13/32 |

@@ -242,12 +242,83 @@ vlan internal order ascending range 1006 1199
 
 | VLAN ID | Name | Trunk Groups |
 | ------- | ---- | ------------ |
+| 10 | VLAN_10 | - |
+| 20 | VLAN_20 | - |
+| 30 | VLAN_30 | - |
+| 100 | VLAN_100 | - |
+| 101 | VLAN_101 | - |
+| 102 | VLAN_102 | - |
+| 103 | VLAN_103 | - |
+| 104 | VLAN_104 | - |
+| 105 | VLAN_105 | - |
+| 106 | VLAN_106 | - |
+| 200 | VLAN_200 | - |
+| 201 | VLAN_201 | - |
+| 202 | VLAN_202 | - |
+| 203 | VLAN_203 | - |
+| 3009 | MLAG_L3_VRF_DMZ | MLAG |
+| 3010 | MLAG_L3_VRF_Internal_A | MLAG |
+| 3011 | MLAG_L3_VRF_Internal_B | MLAG |
 | 4093 | MLAG_L3 | MLAG |
 | 4094 | MLAG | MLAG |
 
 ### VLANs Device Configuration
 
 ```eos
+!
+vlan 10
+   name VLAN_10
+!
+vlan 20
+   name VLAN_20
+!
+vlan 30
+   name VLAN_30
+!
+vlan 100
+   name VLAN_100
+!
+vlan 101
+   name VLAN_101
+!
+vlan 102
+   name VLAN_102
+!
+vlan 103
+   name VLAN_103
+!
+vlan 104
+   name VLAN_104
+!
+vlan 105
+   name VLAN_105
+!
+vlan 106
+   name VLAN_106
+!
+vlan 200
+   name VLAN_200
+!
+vlan 201
+   name VLAN_201
+!
+vlan 202
+   name VLAN_202
+!
+vlan 203
+   name VLAN_203
+!
+vlan 3009
+   name MLAG_L3_VRF_DMZ
+   trunk group MLAG
+!
+vlan 3010
+   name MLAG_L3_VRF_Internal_A
+   trunk group MLAG
+!
+vlan 3011
+   name MLAG_L3_VRF_Internal_B
+   trunk group MLAG
 !
 vlan 4093
    name MLAG_L3
@@ -378,6 +449,21 @@ interface Loopback1
 
 | Interface | Description | VRF |  MTU | Shutdown |
 | --------- | ----------- | --- | ---- | -------- |
+| Vlan10 | VLAN_10 | DMZ | - | False |
+| Vlan20 | VLAN_20 | DMZ | - | False |
+| Vlan30 | VLAN_30 | DMZ | - | False |
+| Vlan100 | VLAN_100 | Internal_A | - | False |
+| Vlan101 | VLAN_101 | Internal_A | - | False |
+| Vlan102 | VLAN_102 | Internal_A | - | False |
+| Vlan103 | VLAN_103 | Internal_A | - | False |
+| Vlan104 | VLAN_104 | Internal_A | - | False |
+| Vlan105 | VLAN_105 | Internal_A | - | False |
+| Vlan106 | VLAN_106 | Internal_A | - | False |
+| Vlan200 | VLAN_200 | Internal_B | - | False |
+| Vlan201 | VLAN_201 | Internal_B | - | False |
+| Vlan3009 | MLAG_L3_VRF_DMZ | DMZ | 1550 | False |
+| Vlan3010 | MLAG_L3_VRF_Internal_A | Internal_A | 1550 | False |
+| Vlan3011 | MLAG_L3_VRF_Internal_B | Internal_B | 1550 | False |
 | Vlan4093 | MLAG_L3 | default | 1550 | False |
 | Vlan4094 | MLAG | default | 1550 | False |
 
@@ -385,12 +471,120 @@ interface Loopback1
 
 | Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | ACL In | ACL Out |
 | --------- | --- | ---------- | ------------------ | ------------------------- | ------ | ------- |
+| Vlan10 |  DMZ  |  -  |  10.1.10.1/24  |  -  |  -  |  -  |
+| Vlan20 |  DMZ  |  -  |  10.1.20.1/24  |  -  |  -  |  -  |
+| Vlan30 |  DMZ  |  -  |  10.1.30.1/24  |  -  |  -  |  -  |
+| Vlan100 |  Internal_A  |  -  |  10.1.100.1/24  |  -  |  -  |  -  |
+| Vlan101 |  Internal_A  |  -  |  10.1.101.1/24  |  -  |  -  |  -  |
+| Vlan102 |  Internal_A  |  -  |  10.1.102.1/24  |  -  |  -  |  -  |
+| Vlan103 |  Internal_A  |  -  |  10.1.103.1/24  |  -  |  -  |  -  |
+| Vlan104 |  Internal_A  |  -  |  10.1.104.1/24  |  -  |  -  |  -  |
+| Vlan105 |  Internal_A  |  -  |  10.1.105.1/24  |  -  |  -  |  -  |
+| Vlan106 |  Internal_A  |  -  |  10.1.106.1/24  |  -  |  -  |  -  |
+| Vlan200 |  Internal_B  |  -  |  10.1.200.1/24  |  -  |  -  |  -  |
+| Vlan201 |  Internal_B  |  -  |  10.1.201.1/24  |  -  |  -  |  -  |
+| Vlan3009 |  DMZ  |  10.255.7.61/31  |  -  |  -  |  -  |  -  |
+| Vlan3010 |  Internal_A  |  10.255.7.61/31  |  -  |  -  |  -  |  -  |
+| Vlan3011 |  Internal_B  |  10.255.7.61/31  |  -  |  -  |  -  |  -  |
 | Vlan4093 |  default  |  10.255.7.61/31  |  -  |  -  |  -  |  -  |
 | Vlan4094 |  default  |  10.255.6.61/31  |  -  |  -  |  -  |  -  |
 
 #### VLAN Interfaces Device Configuration
 
 ```eos
+!
+interface Vlan10
+   description VLAN_10
+   no shutdown
+   vrf DMZ
+   ip address virtual 10.1.10.1/24
+!
+interface Vlan20
+   description VLAN_20
+   no shutdown
+   vrf DMZ
+   ip address virtual 10.1.20.1/24
+!
+interface Vlan30
+   description VLAN_30
+   no shutdown
+   vrf DMZ
+   ip address virtual 10.1.30.1/24
+!
+interface Vlan100
+   description VLAN_100
+   no shutdown
+   vrf Internal_A
+   ip address virtual 10.1.100.1/24
+!
+interface Vlan101
+   description VLAN_101
+   no shutdown
+   vrf Internal_A
+   ip address virtual 10.1.101.1/24
+!
+interface Vlan102
+   description VLAN_102
+   no shutdown
+   vrf Internal_A
+   ip address virtual 10.1.102.1/24
+!
+interface Vlan103
+   description VLAN_103
+   no shutdown
+   vrf Internal_A
+   ip address virtual 10.1.103.1/24
+!
+interface Vlan104
+   description VLAN_104
+   no shutdown
+   vrf Internal_A
+   ip address virtual 10.1.104.1/24
+!
+interface Vlan105
+   description VLAN_105
+   no shutdown
+   vrf Internal_A
+   ip address virtual 10.1.105.1/24
+!
+interface Vlan106
+   description VLAN_106
+   no shutdown
+   vrf Internal_A
+   ip address virtual 10.1.106.1/24
+!
+interface Vlan200
+   description VLAN_200
+   no shutdown
+   vrf Internal_B
+   ip address virtual 10.1.200.1/24
+!
+interface Vlan201
+   description VLAN_201
+   no shutdown
+   vrf Internal_B
+   ip address virtual 10.1.201.1/24
+!
+interface Vlan3009
+   description MLAG_L3_VRF_DMZ
+   no shutdown
+   mtu 1550
+   vrf DMZ
+   ip address 10.255.7.61/31
+!
+interface Vlan3010
+   description MLAG_L3_VRF_Internal_A
+   no shutdown
+   mtu 1550
+   vrf Internal_A
+   ip address 10.255.7.61/31
+!
+interface Vlan3011
+   description MLAG_L3_VRF_Internal_B
+   no shutdown
+   mtu 1550
+   vrf Internal_B
+   ip address 10.255.7.61/31
 !
 interface Vlan4093
    description MLAG_L3
@@ -416,6 +610,33 @@ interface Vlan4094
 | UDP port | 4789 |
 | EVPN MLAG Shared Router MAC | mlag-system-id |
 
+##### VLAN to VNI, Flood List and Multicast Group Mappings
+
+| VLAN | VNI | Flood List | Multicast Group |
+| ---- | --- | ---------- | --------------- |
+| 10 | 10010 | - | - |
+| 20 | 10020 | - | - |
+| 30 | 10030 | - | - |
+| 100 | 10100 | - | - |
+| 101 | 10101 | - | - |
+| 102 | 10102 | - | - |
+| 103 | 10103 | - | - |
+| 104 | 10104 | - | - |
+| 105 | 10105 | - | - |
+| 106 | 10106 | - | - |
+| 200 | 10200 | - | - |
+| 201 | 10201 | - | - |
+| 202 | 10202 | - | - |
+| 203 | 10203 | - | - |
+
+##### VRF to VNI and Multicast Group Mappings
+
+| VRF | VNI | Multicast Group |
+| ---- | --- | --------------- |
+| DMZ | 10 | - |
+| Internal_A | 11 | - |
+| Internal_B | 12 | - |
+
 #### VXLAN Interface Device Configuration
 
 ```eos
@@ -425,6 +646,23 @@ interface Vxlan1
    vxlan source-interface Loopback1
    vxlan virtual-router encapsulation mac-address mlag-system-id
    vxlan udp-port 4789
+   vxlan vlan 10 vni 10010
+   vxlan vlan 20 vni 10020
+   vxlan vlan 30 vni 10030
+   vxlan vlan 100 vni 10100
+   vxlan vlan 101 vni 10101
+   vxlan vlan 102 vni 10102
+   vxlan vlan 103 vni 10103
+   vxlan vlan 104 vni 10104
+   vxlan vlan 105 vni 10105
+   vxlan vlan 106 vni 10106
+   vxlan vlan 200 vni 10200
+   vxlan vlan 201 vni 10201
+   vxlan vlan 202 vni 10202
+   vxlan vlan 203 vni 10203
+   vxlan vrf DMZ vni 10
+   vxlan vrf Internal_A vni 11
+   vxlan vrf Internal_B vni 12
 ```
 
 ## Routing
@@ -458,6 +696,9 @@ ip virtual-router mac-address 02:1c:73:00:00:99
 | VRF | Routing Enabled |
 | --- | --------------- |
 | default | True |
+| DMZ | True |
+| Internal_A | True |
+| Internal_B | True |
 | MGMT | False |
 
 #### IP Routing Device Configuration
@@ -465,6 +706,9 @@ ip virtual-router mac-address 02:1c:73:00:00:99
 ```eos
 !
 ip routing
+ip routing vrf DMZ
+ip routing vrf Internal_A
+ip routing vrf Internal_B
 no ip routing vrf MGMT
 ```
 
@@ -475,6 +719,9 @@ no ip routing vrf MGMT
 | VRF | Routing Enabled |
 | --- | --------------- |
 | default | False |
+| DMZ | false |
+| Internal_A | false |
+| Internal_B | false |
 | MGMT | false |
 
 ### Static Routes
@@ -549,6 +796,9 @@ ASN Notation: asplain
 | 10.255.4.2 | 65001 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
 | 10.255.4.3 | 65001 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
 | 10.255.7.60 | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | default | - | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | - | - | - | - | - | - |
+| 10.255.7.60 | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | DMZ | - | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | - | - | - | - | - | - |
+| 10.255.7.60 | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Internal_A | - | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | - | - | - | - | - | - |
+| 10.255.7.60 | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Internal_B | - | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | - | - | - | - | - | - |
 
 #### Router BGP EVPN Address Family
 
@@ -557,6 +807,33 @@ ASN Notation: asplain
 | Peer Group | Activate | Route-map In | Route-map Out | Encapsulation | Next-hop-self Source Interface |
 | ---------- | -------- | ------------ | ------------- | ------------- | ------------------------------ |
 | EVPN-OVERLAY-PEERS | True |  - | - | default | - |
+
+#### Router BGP VLANs
+
+| VLAN | Route-Distinguisher | Both Route-Target | Import Route Target | Export Route-Target | Redistribute |
+| ---- | ------------------- | ----------------- | ------------------- | ------------------- | ------------ |
+| 10 | 10.255.4.32:10010 | 10010:10010 | - | - | learned |
+| 20 | 10.255.4.32:10020 | 10020:10020 | - | - | learned |
+| 30 | 10.255.4.32:10030 | 10030:10030 | - | - | learned |
+| 100 | 10.255.4.32:10100 | 10100:10100 | - | - | learned |
+| 101 | 10.255.4.32:10101 | 10101:10101 | - | - | learned |
+| 102 | 10.255.4.32:10102 | 10102:10102 | - | - | learned |
+| 103 | 10.255.4.32:10103 | 10103:10103 | - | - | learned |
+| 104 | 10.255.4.32:10104 | 10104:10104 | - | - | learned |
+| 105 | 10.255.4.32:10105 | 10105:10105 | - | - | learned |
+| 106 | 10.255.4.32:10106 | 10106:10106 | - | - | learned |
+| 200 | 10.255.4.32:10200 | 10200:10200 | - | - | learned |
+| 201 | 10.255.4.32:10201 | 10201:10201 | - | - | learned |
+| 202 | 10.255.4.32:10202 | 10202:10202 | - | - | learned |
+| 203 | 10.255.4.32:10203 | 10203:10203 | - | - | learned |
+
+#### Router BGP VRFs
+
+| VRF | Route-Distinguisher | Redistribute | Graceful Restart |
+| --- | ------------------- | ------------ | ---------------- |
+| DMZ | 10.255.4.32:10 | connected | - |
+| Internal_A | 10.255.4.32:11 | connected | - |
+| Internal_B | 10.255.4.32:12 | connected | - |
 
 #### Router BGP Device Configuration
 
@@ -604,6 +881,76 @@ router bgp 65131
    neighbor 10.255.7.60 description leaf21_Vlan4093
    redistribute connected route-map RM-CONN-2-BGP
    !
+   vlan 10
+      rd 10.255.4.32:10010
+      route-target both 10010:10010
+      redistribute learned
+   !
+   vlan 20
+      rd 10.255.4.32:10020
+      route-target both 10020:10020
+      redistribute learned
+   !
+   vlan 30
+      rd 10.255.4.32:10030
+      route-target both 10030:10030
+      redistribute learned
+   !
+   vlan 100
+      rd 10.255.4.32:10100
+      route-target both 10100:10100
+      redistribute learned
+   !
+   vlan 101
+      rd 10.255.4.32:10101
+      route-target both 10101:10101
+      redistribute learned
+   !
+   vlan 102
+      rd 10.255.4.32:10102
+      route-target both 10102:10102
+      redistribute learned
+   !
+   vlan 103
+      rd 10.255.4.32:10103
+      route-target both 10103:10103
+      redistribute learned
+   !
+   vlan 104
+      rd 10.255.4.32:10104
+      route-target both 10104:10104
+      redistribute learned
+   !
+   vlan 105
+      rd 10.255.4.32:10105
+      route-target both 10105:10105
+      redistribute learned
+   !
+   vlan 106
+      rd 10.255.4.32:10106
+      route-target both 10106:10106
+      redistribute learned
+   !
+   vlan 200
+      rd 10.255.4.32:10200
+      route-target both 10200:10200
+      redistribute learned
+   !
+   vlan 201
+      rd 10.255.4.32:10201
+      route-target both 10201:10201
+      redistribute learned
+   !
+   vlan 202
+      rd 10.255.4.32:10202
+      route-target both 10202:10202
+      redistribute learned
+   !
+   vlan 203
+      rd 10.255.4.32:10203
+      route-target both 10203:10203
+      redistribute learned
+   !
    address-family evpn
       neighbor EVPN-OVERLAY-PEERS activate
    !
@@ -611,6 +958,33 @@ router bgp 65131
       no neighbor EVPN-OVERLAY-PEERS activate
       neighbor IPv4-UNDERLAY-PEERS activate
       neighbor MLAG-IPv4-UNDERLAY-PEER activate
+   !
+   vrf DMZ
+      rd 10.255.4.32:10
+      route-target import evpn 10:10
+      route-target export evpn 10:10
+      router-id 10.255.4.32
+      neighbor 10.255.7.60 peer group MLAG-IPv4-UNDERLAY-PEER
+      neighbor 10.255.7.60 description leaf21_Vlan3009
+      redistribute connected route-map RM-CONN-2-BGP-VRFS
+   !
+   vrf Internal_A
+      rd 10.255.4.32:11
+      route-target import evpn 11:11
+      route-target export evpn 11:11
+      router-id 10.255.4.32
+      neighbor 10.255.7.60 peer group MLAG-IPv4-UNDERLAY-PEER
+      neighbor 10.255.7.60 description leaf21_Vlan3010
+      redistribute connected route-map RM-CONN-2-BGP-VRFS
+   !
+   vrf Internal_B
+      rd 10.255.4.32:12
+      route-target import evpn 12:12
+      route-target export evpn 12:12
+      router-id 10.255.4.32
+      neighbor 10.255.7.60 peer group MLAG-IPv4-UNDERLAY-PEER
+      neighbor 10.255.7.60 description leaf21_Vlan3011
+      redistribute connected route-map RM-CONN-2-BGP-VRFS
 ```
 
 ## BFD
@@ -659,6 +1033,12 @@ router bfd
 | 10 | permit 10.255.4.0/24 eq 32 |
 | 20 | permit 10.255.5.0/24 eq 32 |
 
+##### PL-MLAG-PEER-VRFS
+
+| Sequence | Action |
+| -------- | ------ |
+| 10 | permit 10.255.7.60/31 |
+
 #### Prefix-lists Device Configuration
 
 ```eos
@@ -666,6 +1046,9 @@ router bfd
 ip prefix-list PL-LOOPBACKS-EVPN-OVERLAY
    seq 10 permit 10.255.4.0/24 eq 32
    seq 20 permit 10.255.5.0/24 eq 32
+!
+ip prefix-list PL-MLAG-PEER-VRFS
+   seq 10 permit 10.255.7.60/31
 ```
 
 ### Route-maps
@@ -677,6 +1060,13 @@ ip prefix-list PL-LOOPBACKS-EVPN-OVERLAY
 | Sequence | Type | Match | Set | Sub-Route-Map | Continue |
 | -------- | ---- | ----- | --- | ------------- | -------- |
 | 10 | permit | ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY | - | - | - |
+
+##### RM-CONN-2-BGP-VRFS
+
+| Sequence | Type | Match | Set | Sub-Route-Map | Continue |
+| -------- | ---- | ----- | --- | ------------- | -------- |
+| 10 | deny | ip address prefix-list PL-MLAG-PEER-VRFS | - | - | - |
+| 20 | permit | - | - | - | - |
 
 ##### RM-MLAG-PEER-IN
 
@@ -691,6 +1081,11 @@ ip prefix-list PL-LOOPBACKS-EVPN-OVERLAY
 route-map RM-CONN-2-BGP permit 10
    match ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY
 !
+route-map RM-CONN-2-BGP-VRFS deny 10
+   match ip address prefix-list PL-MLAG-PEER-VRFS
+!
+route-map RM-CONN-2-BGP-VRFS permit 20
+!
 route-map RM-MLAG-PEER-IN permit 10
    description Make routes learned over MLAG Peer-link less preferred on spines to ensure optimal routing
    set origin incomplete
@@ -702,11 +1097,20 @@ route-map RM-MLAG-PEER-IN permit 10
 
 | VRF Name | IP Routing |
 | -------- | ---------- |
+| DMZ | enabled |
+| Internal_A | enabled |
+| Internal_B | enabled |
 | MGMT | disabled |
 
 ### VRF Instances Device Configuration
 
 ```eos
+!
+vrf instance DMZ
+!
+vrf instance Internal_A
+!
+vrf instance Internal_B
 !
 vrf instance MGMT
 ```

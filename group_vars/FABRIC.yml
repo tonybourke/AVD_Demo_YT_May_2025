@@ -302,8 +302,12 @@ l3leaf:
       nodes:
         - name: borderleaf1
           id: 61
+          uplink_switch_interfaces: [Ethernet52, Ethernet52, Ethernet52]
+          mgmt_ip: 172.20.20.91/24
         - name: borderleaf2
           id: 62
+          uplink_switch_interfaces: [Ethernet53, Ethernet53, Ethernet53]
+          mgmt_ip: 172.20.20.92/24
 
 # Needed for vEOS/cEOS
 bgp_update_wait_install: false

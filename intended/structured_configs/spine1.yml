@@ -484,6 +484,26 @@ ethernet_interfaces:
   peer_type: l3leaf
   switchport:
     enabled: false
+- name: Ethernet52
+  description: P2P_borderleaf1_Ethernet3
+  shutdown: false
+  mtu: 1550
+  ip_address: 10.255.1.104/31
+  peer: borderleaf1
+  peer_interface: Ethernet3
+  peer_type: l3leaf
+  switchport:
+    enabled: false
+- name: Ethernet53
+  description: P2P_borderleaf2_Ethernet3
+  shutdown: false
+  mtu: 1550
+  ip_address: 10.255.1.110/31
+  peer: borderleaf2
+  peer_interface: Ethernet3
+  peer_type: l3leaf
+  switchport:
+    enabled: false
 hostname: spine1
 ip_name_servers:
 - ip_address: 192.168.1.9
@@ -801,6 +821,26 @@ router_bgp:
     remote_as: '65157'
     peer: leaf48
     description: leaf48_Ethernet3
+  - ip_address: 10.255.1.105
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65161'
+    peer: borderleaf1
+    description: borderleaf1_Ethernet3
+  - ip_address: 10.255.1.111
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65161'
+    peer: borderleaf2
+    description: borderleaf2_Ethernet3
+  - ip_address: 10.255.4.61
+    peer_group: EVPN-OVERLAY-PEERS
+    remote_as: '65161'
+    peer: borderleaf1
+    description: borderleaf1_Loopback0
+  - ip_address: 10.255.4.62
+    peer_group: EVPN-OVERLAY-PEERS
+    remote_as: '65161'
+    peer: borderleaf2
+    description: borderleaf2_Loopback0
   - ip_address: 10.255.4.11
     peer_group: EVPN-OVERLAY-PEERS
     remote_as: '65111'

@@ -118,7 +118,10 @@ all:
               hosts:
                 leaf47:
                 leaf48:
-
+            BORDERLEAFS:
+              hosts:
+                borderleaf1:
+                borderleaf2:
             
     INFRA:
       children:
@@ -131,3 +134,9 @@ all:
         FW:
           hosts:
             FW[1:2]:
+    EVPN_SERVICES:
+      children:
+        LEAFS:
+    ENDPOINT_CONNECT:
+      children:
+        LEAFS:
