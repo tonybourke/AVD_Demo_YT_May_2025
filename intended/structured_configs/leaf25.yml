@@ -1,0 +1,271 @@
+aaa_root:
+  disabled: true
+config_end: true
+enable_password:
+  disabled: true
+ethernet_interfaces:
+- name: Ethernet1
+  description: MLAG_leaf26_Ethernet1
+  shutdown: false
+  channel_group:
+    id: 1
+    mode: active
+  peer: leaf26
+  peer_interface: Ethernet1
+  peer_type: mlag_peer
+- name: Ethernet2
+  description: MLAG_leaf26_Ethernet2
+  shutdown: false
+  channel_group:
+    id: 1
+    mode: active
+  peer: leaf26
+  peer_interface: Ethernet2
+  peer_type: mlag_peer
+- name: Ethernet3
+  description: P2P_spine1_Ethernet26
+  shutdown: false
+  mtu: 1550
+  ip_address: 10.255.0.205/31
+  peer: spine1
+  peer_interface: Ethernet26
+  peer_type: spine
+  switchport:
+    enabled: false
+- name: Ethernet4
+  description: P2P_spine2_Ethernet26
+  shutdown: false
+  mtu: 1550
+  ip_address: 10.255.0.207/31
+  peer: spine2
+  peer_interface: Ethernet26
+  peer_type: spine
+  switchport:
+    enabled: false
+- name: Ethernet5
+  description: P2P_spine3_Ethernet26
+  shutdown: false
+  mtu: 1550
+  ip_address: 10.255.0.209/31
+  peer: spine3
+  peer_interface: Ethernet26
+  peer_type: spine
+  switchport:
+    enabled: false
+hostname: leaf25
+ip_igmp_snooping:
+  globally_enabled: true
+ip_name_servers:
+- ip_address: 192.168.1.9
+  vrf: MGMT
+ip_routing: true
+ip_virtual_router_mac_address: 02:1c:73:00:00:99
+is_deployed: true
+local_users:
+- name: admin
+  privilege: 15
+  role: network-admin
+  sha512_password: $6$E3EsaKSY8pKgghHP$DMbYzJMIvUpcHnJv1j8nE47wYv4VbECq1oacBXukkYd/IH4D0c9n7VmijLyob4GEZfWBlZYPUi8es9EaGl387/
+  ssh_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDaaW0yCS+kwtUVIJdwCVaw2+Ul/yYhaPXYltoVcszcEJPWCSwAmMdvrlecxcyEfrs1KJLYVLD8RwmMRlMRrteYJzmk8MGuAyNxQMcma0EWI78suzJOlxGczxwUzZY2+vYwLgWQZPYEZeScjY8ko68r+sEUmgg+y/WC+OGshtytqahs1zaJhDHwu2y3GAW9KnCA1vQL8qyaXvTKkci6+unMlwdc7jTL7bktoudWFKAAHxVtJf0SdBGvWdbbh3JgAt3mHtjKMfm+8qQgv1mfr6Sn41tLlsmn/RTsMMkDbuYVmpjXFSb6LXwf/ylx1zc/FxJHHXh4yD0wOKD3rYEIjndF7uGEqrs1BZtje50L6YPVcjUCGI9kL4R1BUI8uzTmTLATOmDJ03KAaTnXwkhlW96FQshJjiDL4K9FZUaYww6vEp2nk2XOaXxyB1JXe0/2A/H57f2wIR1TwdqAbcHOkGLqj0mS+focnRJvaxPk6ytIGmfRqF9n8K0RLMXN9s/G+sk=
+- name: tony
+  privilege: 15
+  role: network-admin
+  sha512_password: $6$2HC2gweRsQ.pgMMJ$G7sQKhDUV8Kxw9d0bN9PCpqKPoB7w9EEieDb3IA3vgK3Gf13EuBLJZ.TTHjZLbMnLO3X0Hsdu.iDpHVozaX7O.
+  ssh_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDaaW0yCS+kwtUVIJdwCVaw2+Ul/yYhaPXYltoVcszcEJPWCSwAmMdvrlecxcyEfrs1KJLYVLD8RwmMRlMRrteYJzmk8MGuAyNxQMcma0EWI78suzJOlxGczxwUzZY2+vYwLgWQZPYEZeScjY8ko68r+sEUmgg+y/WC+OGshtytqahs1zaJhDHwu2y3GAW9KnCA1vQL8qyaXvTKkci6+unMlwdc7jTL7bktoudWFKAAHxVtJf0SdBGvWdbbh3JgAt3mHtjKMfm+8qQgv1mfr6Sn41tLlsmn/RTsMMkDbuYVmpjXFSb6LXwf/ylx1zc/FxJHHXh4yD0wOKD3rYEIjndF7uGEqrs1BZtje50L6YPVcjUCGI9kL4R1BUI8uzTmTLATOmDJ03KAaTnXwkhlW96FQshJjiDL4K9FZUaYww6vEp2nk2XOaXxyB1JXe0/2A/H57f2wIR1TwdqAbcHOkGLqj0mS+focnRJvaxPk6ytIGmfRqF9n8K0RLMXN9s/G+sk=
+loopback_interfaces:
+- name: Loopback0
+  description: ROUTER_ID
+  shutdown: false
+  ip_address: 10.255.4.35/32
+- name: Loopback1
+  description: VXLAN_TUNNEL_SOURCE
+  shutdown: false
+  ip_address: 10.255.5.35/32
+management_api_http:
+  enable_https: true
+  enable_vrfs:
+  - name: MGMT
+management_interfaces:
+- name: Management0
+  description: OOB_MANAGEMENT
+  shutdown: false
+  vrf: MGMT
+  ip_address: 172.20.20.35/24
+  type: oob
+  gateway: 172.20.20.1
+metadata:
+  platform: cEOS-lab
+  fabric_name: FABRIC
+mlag_configuration:
+  domain_id: RACK13
+  local_interface: Vlan4094
+  peer_address: 10.255.6.69
+  peer_link: Port-Channel1
+  reload_delay_mlag: '300'
+  reload_delay_non_mlag: '330'
+port_channel_interfaces:
+- name: Port-Channel1
+  description: MLAG_leaf26_Port-Channel1
+  shutdown: false
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      groups:
+      - MLAG
+prefix_lists:
+- name: PL-LOOPBACKS-EVPN-OVERLAY
+  sequence_numbers:
+  - sequence: 10
+    action: permit 10.255.4.0/24 eq 32
+  - sequence: 20
+    action: permit 10.255.5.0/24 eq 32
+route_maps:
+- name: RM-MLAG-PEER-IN
+  sequence_numbers:
+  - sequence: 10
+    type: permit
+    description: Make routes learned over MLAG Peer-link less preferred on spines to ensure optimal routing
+    set:
+    - origin incomplete
+- name: RM-CONN-2-BGP
+  sequence_numbers:
+  - sequence: 10
+    type: permit
+    match:
+    - ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY
+router_bfd:
+  multihop:
+    interval: 300
+    min_rx: 300
+    multiplier: 3
+router_bgp:
+  as: '65135'
+  router_id: 10.255.4.35
+  maximum_paths:
+    paths: 4
+    ecmp: 4
+  bgp:
+    default:
+      ipv4_unicast: false
+  peer_groups:
+  - name: MLAG-IPv4-UNDERLAY-PEER
+    type: ipv4
+    remote_as: '65135'
+    description: leaf26
+    next_hop_self: true
+    send_community: all
+    maximum_routes: 12000
+    route_map_in: RM-MLAG-PEER-IN
+  - name: IPv4-UNDERLAY-PEERS
+    type: ipv4
+    send_community: all
+    maximum_routes: 12000
+  - name: EVPN-OVERLAY-PEERS
+    type: evpn
+    update_source: Loopback0
+    bfd: true
+    ebgp_multihop: 3
+    send_community: all
+    maximum_routes: 0
+  neighbors:
+  - ip_address: 10.255.7.69
+    peer_group: MLAG-IPv4-UNDERLAY-PEER
+    peer: leaf26
+    description: leaf26_Vlan4093
+  - ip_address: 10.255.0.204
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65001'
+    peer: spine1
+    description: spine1_Ethernet26
+  - ip_address: 10.255.0.206
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65001'
+    peer: spine2
+    description: spine2_Ethernet26
+  - ip_address: 10.255.0.208
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65001'
+    peer: spine3
+    description: spine3_Ethernet26
+  - ip_address: 10.255.4.1
+    peer_group: EVPN-OVERLAY-PEERS
+    remote_as: '65001'
+    peer: spine1
+    description: spine1_Loopback0
+  - ip_address: 10.255.4.2
+    peer_group: EVPN-OVERLAY-PEERS
+    remote_as: '65001'
+    peer: spine2
+    description: spine2_Loopback0
+  - ip_address: 10.255.4.3
+    peer_group: EVPN-OVERLAY-PEERS
+    remote_as: '65001'
+    peer: spine3
+    description: spine3_Loopback0
+  redistribute:
+    connected:
+      enabled: true
+      route_map: RM-CONN-2-BGP
+  address_family_evpn:
+    peer_groups:
+    - name: EVPN-OVERLAY-PEERS
+      activate: true
+  address_family_ipv4:
+    peer_groups:
+    - name: MLAG-IPv4-UNDERLAY-PEER
+      activate: true
+    - name: IPv4-UNDERLAY-PEERS
+      activate: true
+    - name: EVPN-OVERLAY-PEERS
+      activate: false
+service_routing_protocols_model: multi-agent
+spanning_tree:
+  mode: mstp
+  mst_instances:
+  - id: '0'
+    priority: 4096
+  no_spanning_tree_vlan: 4093-4094
+static_routes:
+- vrf: MGMT
+  destination_address_prefix: 0.0.0.0/0
+  gateway: 172.20.20.1
+transceiver_qsfp_default_mode_4x10: true
+vlan_interfaces:
+- name: Vlan4093
+  description: MLAG_L3
+  shutdown: false
+  ip_address: 10.255.7.68/31
+  mtu: 1550
+- name: Vlan4094
+  description: MLAG
+  shutdown: false
+  ip_address: 10.255.6.68/31
+  mtu: 1550
+  no_autostate: true
+vlan_internal_order:
+  allocation: ascending
+  range:
+    beginning: 1006
+    ending: 1199
+vlans:
+- id: 4093
+  name: MLAG_L3
+  trunk_groups:
+  - MLAG
+  tenant: system
+- id: 4094
+  name: MLAG
+  trunk_groups:
+  - MLAG
+  tenant: system
+vrfs:
+- name: MGMT
+  ip_routing: false
+vxlan_interface:
+  vxlan1:
+    description: leaf25_VTEP
+    vxlan:
+      source_interface: Loopback1
+      udp_port: 4789
+      virtual_router_encapsulation_mac_address: mlag-system-id

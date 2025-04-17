@@ -1,0 +1,5 @@
+---
+network_ports:
+  - switches: [leaf1, leaf2]
+    switch_ports: [Ethernet3-10]
+    profile: DMZ_Profile

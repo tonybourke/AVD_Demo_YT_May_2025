@@ -1,0 +1,7 @@
+---
+- name: Deploy Configurations to Devices using eAPI 
+  hosts: FABRIC
+  tasks:
+    - name: Deploy Configurations to Devices 
+      ansible.builtin.import_role:
+        name: arista.avd.eos_config_deploy_eapi

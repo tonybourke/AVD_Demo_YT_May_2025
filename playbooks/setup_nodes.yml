@@ -1,0 +1,21 @@
+---
+- name: Housekeeping for devices
+  hosts: all
+  tasks:
+    - name: Add SSH key
+      arista.eos.eos_user:
+        name: tony
+        sshkey: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+        state: present
+    - name: Add user
+      arista.eos.eos_user:
+        name: tony
+        nopassword: true
+        privilege: 15
+        role: network-admin
+        state: present
+    - name: Configure authentication
+      arista.eos.eos_config:
+        lines:
+          - aaa authentication login default local 
+          - aaa authorization exec default local

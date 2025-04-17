@@ -1,0 +1,29 @@
+port_profiles:
+  - profile: DMZ_Profile
+    description: DMZ
+    enabled: True
+    mode: trunk
+    vlans: 10, 20, 30
+    spanning_tree_portfast: edge
+    port_channel:
+      mode: active
+  - profile: Internal_A_VMware
+    description: A_VMware
+    enabled: True
+    mode: trunk
+    vlans: 101, 102, 103
+    spanning_tree_portfast: edge
+  - profile: Internal_B_VMware
+    description: B_VMware
+    enabled: True
+    mode: trunk
+    vlans: 200, 201
+    spanning_tree_portfast: edge
+  - profile: Internal_FW_Grp1
+    description: B_FW_Grp1
+    enabled: True
+    mode: trunk
+    vlans: 202, 203
+    spanning_tree_portfast: edge
+    port_channel:
+      mode: active

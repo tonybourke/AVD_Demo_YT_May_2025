@@ -1,0 +1,133 @@
+---
+all:
+  vars:
+    ansible_user: admin
+    ansible_password: admin
+    ansible_network_os: eos
+    ansible_connection: httpapi
+    ansible_httpapi_use_ssl: True
+    ansible_httpapi_validate_certs: False
+    ansible_httpapi_port: 443
+    ansible_become: yes
+    ansible_become_method: enable  
+  children:
+    FABRIC:
+      children: 
+        SPINES:
+          vars:
+            type: spine
+          hosts:
+            spine[1:3]:
+        LEAFS:
+          vars:
+            type: l3leaf
+          children:
+            RACK1:
+              hosts:
+                leaf1:
+                leaf2:
+            RACK2:
+              hosts:
+                leaf3:
+                leaf4:
+            RACK3:
+              hosts:
+                leaf5:
+                leaf6:
+            RACK4:
+              hosts:
+                leaf7:
+                leaf8:
+            RACK5:
+              hosts:
+                leaf9:
+                leaf10:
+            RACK6:
+              hosts:
+                leaf11:
+                leaf12:
+            RACK7:
+              hosts:
+                leaf13:
+                leaf14:
+            RACK8:
+              hosts:
+                leaf15:
+                leaf16:
+            RACK9:
+              hosts:
+                leaf17:
+                leaf18:
+            RACK10:
+              hosts:
+                leaf19:
+                leaf20:
+            RACK11:
+              hosts:
+                leaf21:
+                leaf22:
+            RACK12:
+              hosts:
+                leaf23:
+                leaf24:
+            RACK13:
+              hosts:
+                leaf25:
+                leaf26:
+            RACK14:
+              hosts:
+                leaf27:
+                leaf28:
+            RACK15:
+              hosts:
+                leaf29:
+                leaf30:
+            RACK16:
+              hosts:
+                leaf31:
+                leaf32:
+            RACK17:
+              hosts:
+                leaf33:
+                leaf34:
+            RACK18:
+              hosts:
+                leaf35:
+                leaf36:
+            RACK19:
+              hosts:
+                leaf37:
+                leaf38:
+            RACK20:
+              hosts:
+                leaf39:
+                leaf40:
+            RACK21:
+              hosts:
+                leaf41:
+                leaf42:
+            RACK22:
+              hosts:
+                leaf43:
+                leaf44:
+            RACK23:
+              hosts:
+                leaf45:
+                leaf46:
+            RACK24:
+              hosts:
+                leaf47:
+                leaf48:
+
+            
+    INFRA:
+      children:
+        HOSTS:
+          hosts:
+            host[1:2]:
+        ROUTERS:
+          hosts:  
+            R1:
+        FW:
+          hosts:
+            FW[1:2]:

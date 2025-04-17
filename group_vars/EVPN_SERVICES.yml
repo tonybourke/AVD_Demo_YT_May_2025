@@ -1,0 +1,67 @@
+---
+tenants:
+  - name: TENANT1
+    mac_vrf_vni_base: 10000
+    vrfs:
+      - name: DMZ
+        vrf_vni: 10
+        svis:
+          - id: 10
+            name: VLAN_10
+            enabled: true
+            ip_address_virtual: 10.1.10.1/24
+          - id: 20
+            name: VLAN_20
+            enabled: true
+            ip_address_virtual: 10.1.20.1/24
+          - id: 30
+            name: VLAN_30
+            enabled: true
+            ip_address_virtual: 10.1.30.1/24
+      - name: Internal_A
+        vrf_vni: 11
+        svis:
+          - id: 100
+            name: VLAN_100
+            enabled: true
+            ip_address_virtual: 10.1.100.1/24
+          - id: 101
+            name: VLAN_101
+            enabled: true
+            ip_address_virtual: 10.1.101.1/24
+          - id: 102
+            name: VLAN_102
+            enabled: true
+            ip_address_virtual: 10.1.102.1/24
+          - id: 103
+            name: VLAN_103
+            enabled: true
+            ip_address_virtual: 10.1.103.1/24
+          - id: 104
+            name: VLAN_104
+            enabled: true
+            ip_address_virtual: 10.1.104.1/24
+          - id: 105
+            name: VLAN_105
+            enabled: true
+            ip_address_virtual: 10.1.105.1/24
+          - id: 106
+            name: VLAN_106
+            enabled: true
+            ip_address_virtual: 10.1.106.1/24
+      - name: Internal_B
+        vrf_vni: 12
+        svis:
+          - id: 200
+            name: VLAN_200
+            enabled: true
+            ip_address_virtual: 10.1.200.1/24
+          - id: 201
+            name: VLAN_201
+            enabled: true
+            ip_address_virtual: 10.1.201.1/24
+    l2vlans:
+      - id: 202
+        name: VLAN_202
+      - id: 203
+        name: VLAN_203
